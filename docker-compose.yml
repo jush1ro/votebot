@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  telegram:
+    build: .
+    container_name: telegram_votebot
+    volumes:
+      - ./data:/app/data:rw
+    env_file:
+      - .env

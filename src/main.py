@@ -1,7 +1,9 @@
-import os
 import logging
-from bot import VoteBot
+import os
+
 from aiogram import executor
+
+from bot import VoteBot
 
 logging.basicConfig(level=logging.DEBUG)
 

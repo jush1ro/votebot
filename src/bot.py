@@ -1,22 +1,11 @@
 import logging
-import sqlite_wrapper as sql_wrapper
 from datetime import datetime
 
 from aiogram import Bot, Dispatcher, types
 
-logging.basicConfig(level=logging.INFO)
+import sqlite_wrapper as sql_wrapper
 
-# TODO Create handler for /help command
-# TODO Create handler for flooding (no more than n commands on voting per subject/object user)
-# TODO Create logic for polls (how many votes are needed to execute sentences
-# TODO Create exceptions for
-#  - replies to bot messages and voting on bots
-#  - polls being deleted by other admins
-#  - being not an admin in chat
-# TODO Create welcoming message (and ask admins to add as an admin)
-# TODO Create localisation for every message (gotta look into it)
-# TODO Add functionality for admins to change settings
-# TODO Make utils.py for convenience
+logging.basicConfig(level=logging.INFO)
 
 
 async def prepare_message(message: types.Message) -> types.Message:
@@ -42,6 +31,13 @@ class VoteBot:
 
     def _setup_handlers(self):
         dp: Dispatcher = self.dispatcher
+
+        @dp.message_handler(commands=['start'])
+        async def welcome_message(message: types.Message):
+            # TODO Check if this is private conversation or group chat
+            await self._bot.send_message(message.chat.id, "H3110 w0r1d 42")
+            # TODO Make ACTUAL welcome message
+            pass
 
         @dp.message_handler(commands=['votemute'])
         async def votemute(message: types.Message):
