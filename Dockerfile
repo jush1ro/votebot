@@ -8,5 +8,4 @@ WORKDIR /app/
 
 ADD ./src/ /app/src/
 
-ENTRYPOINT sqlite3 /app/data/data.db < /app/src/createdb.sql && python /app/src/main.py
-# TODO Write shell script
+ENTRYPOINT ["/bin/bash", "/app/src/start.sh"]
